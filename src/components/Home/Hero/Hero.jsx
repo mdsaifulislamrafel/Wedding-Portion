@@ -7,6 +7,12 @@ const Hero = () => {
       bgImage="https://images.unsplash.com/photo-1745770998338-eb50b0c89b16?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       bgImageAlt="Wedding background"
       strength={400}
+      bgImageStyle={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        objectPosition: "center"
+      }}
     >
       <div className="relative h-96 md:h-[500px] flex items-center">
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
