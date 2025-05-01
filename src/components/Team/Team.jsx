@@ -41,13 +41,6 @@ const Team = () => {
     }
   ];
 
-  // Calculate the number of cards to display per row dynamically
-  const getGridTemplateColumns = (arrayLength) => {
-    if (arrayLength === 1) return "1fr";
-    if (arrayLength === 2) return "1fr 1fr";
-    return "1fr 1fr 1fr";
-  };
-
   // Create groups of cards (rows)
   const chunkArray = (array, size) => {
     const chunkedArr = [];
@@ -92,26 +85,39 @@ const Team = () => {
               className="mb-8 flex justify-center"
             >
               <div 
-                style={{ 
-                  display: "grid", 
-                  gridTemplateColumns: getGridTemplateColumns(row.length),
-                  gap: "2rem",
-                  width: row.length === 3 ? "100%" : row.length === 2 ? "66%" : "33%"
-                }}
+                className={`
+                  grid gap-4 md:gap-8 w-full
+                  ${row.length === 1 ? 'grid-cols-1 md:w-1/3' : ''}
+                  ${row.length === 2 ? 'grid-cols-1 sm:grid-cols-2 md:w-2/3' : ''}
+                  ${row.length === 3 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : ''}
+                `}
               >
                 {row.map((member) => (
                   <div key={member.id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300">
-                    <div className="h-80 overflow-hidden">
+                    <div className="h-64 sm:h-72 md:h-80 overflow-hidden">
                       <img 
                         src={member.image} 
                         alt={member.name} 
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="p-6 text-center">
-                      <h3 className="text-2xl font-bold mb-1">{member.name}</h3>
+                    <div className="p-4 md:p-6 text-center">
+                      <h3 className="text-xl md:text-2xl font-bold mb-1">{member.name}</h3>
                       <p className="text-gray-700 mb-1">{member.position}</p>
                       {member.location && <p className="text-gray-500 text-sm">{member.location}</p>}
+                      
+                      {/* Social Media Links */}
+                      <div className="flex justify-center space-x-4 mt-3">
+                        <a href="#" className="text-gray-500 hover:text-blue-600 transition-colors">
+                          <Facebook size={18} />
+                        </a>
+                        <a href="#" className="text-gray-500 hover:text-pink-600 transition-colors">
+                          <Instagram size={18} />
+                        </a>
+                        <a href="#" className="text-gray-500 hover:text-red-600 transition-colors">
+                          <Youtube size={18} />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 ))}
