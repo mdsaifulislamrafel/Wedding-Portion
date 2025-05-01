@@ -9,8 +9,16 @@ import {
   Menu,
   X,
 } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
+
 const Navebar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  
+  // Check if a path is active
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
 
   return (
     <header className="bg-black text-white py-3 sticky top-0 z-50">
@@ -20,48 +28,60 @@ const Navebar = () => {
         </div>
 
         <nav
-          className={`absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-black md:bg-transparent 
-                          ${
-                            isMenuOpen ? "flex" : "hidden"
-                          } md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 
-                          p-4 md:p-0 transition-all duration-300 ease-in-out z-40`}
+          className={`absolute md:relative top-16 md:top-0 left-0 w-full md:w-auto bg-black md:bg-transparent
+                       ${
+                         isMenuOpen ? "flex" : "hidden"
+                       } md:flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6
+                       p-4 md:p-0 transition-all duration-300 ease-in-out z-40`}
         >
-          <a
-            href="#"
-            className="hover:text-yellow-400 border-b border-transparent hover:border-yellow-400 font-medium"
+          <Link
+            to={"/"}
+            className={`hover:text-yellow-400 border-b border-transparent ${
+              isActive("/") ? "text-yellow-400 border-yellow-400" : "hover:border-yellow-400"
+            } font-medium`}
           >
             HOME
-          </a>
-          <a
-            href="#"
-            className="hover:text-yellow-400 border-b border-transparent hover:border-yellow-400 font-medium"
+          </Link>
+          <Link
+            to={"/about"}
+            className={`hover:text-yellow-400 border-b border-transparent ${
+              isActive("/about") ? "text-yellow-400 border-yellow-400" : "hover:border-yellow-400"
+            } font-medium`}
           >
             ABOUT
-          </a>
-          <a
-            href="#"
-            className="hover:text-yellow-400 border-b border-transparent hover:border-yellow-400 font-medium"
+          </Link>
+          <Link
+            to={"/services"}
+            className={`hover:text-yellow-400 border-b border-transparent ${
+              isActive("/services") ? "text-yellow-400 border-yellow-400" : "hover:border-yellow-400"
+            } font-medium`}
           >
             PACKAGES
-          </a>
-          <a
-            href="#"
-            className="hover:text-yellow-400 border-b border-transparent hover:border-yellow-400 font-medium"
+          </Link>
+          <Link
+            to={"/our-team"}
+            className={`hover:text-yellow-400 border-b border-transparent ${
+              isActive("/our-team") ? "text-yellow-400 border-yellow-400" : "hover:border-yellow-400"
+            } font-medium`}
           >
             OUR TEAM
-          </a>
-          <a
-            href="#"
-            className="hover:text-yellow-400 border-b border-transparent hover:border-yellow-400 font-medium"
+          </Link>
+          <Link
+            to={"/gallery"}
+            className={`hover:text-yellow-400 border-b border-transparent ${
+              isActive("/gallery") ? "text-yellow-400 border-yellow-400" : "hover:border-yellow-400"
+            } font-medium`}
           >
             GALLERY
-          </a>
-          <a
-            href="#"
-            className="hover:text-yellow-400 border-b border-transparent hover:border-yellow-400 font-medium"
+          </Link>
+          <Link
+            to={"/contact"}
+            className={`hover:text-yellow-400 border-b border-transparent ${
+              isActive("/contact") ? "text-yellow-400 border-yellow-400" : "hover:border-yellow-400"
+            } font-medium`}
           >
             CONTACT
-          </a>
+          </Link>
         </nav>
 
         <div className="flex items-center space-x-2">
