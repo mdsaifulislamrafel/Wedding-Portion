@@ -157,12 +157,6 @@ const Navbar = () => {
             ))}
           </div>
           
-          <button 
-            className="hover:text-yellow-400 transition-colors duration-300"
-            aria-label="Search"
-          >
-            <Search size={18} />
-          </button>
           
           <button
             className="menu-toggle md:hidden hover:text-yellow-400 transition-colors duration-300"
